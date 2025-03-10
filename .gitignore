@@ -1,0 +1,13 @@
+# Ignore sensitive files
+keys.py
+
+# Ignore Python bytecode and virtual environments
+__pycache__/
+*.pyc
+venv/
+env/
+myenv/
+
+# Ignore database or log files
+*.database
+*.log
