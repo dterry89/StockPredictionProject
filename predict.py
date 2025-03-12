@@ -192,7 +192,8 @@ def predict_future_prices(results, prices_df, trades_df):
                 
                 for future_date in future_dates:
                     pred = model.predict(features)[0]
-                    future_price = float(last_price * (1.01 if pred == 1 else .99))
+                    future_price = float(last_price * (1 + stock_prices["s_price"].pct_change().mean() if pred == 1 else 1 - stock_prices["s_price"].pct_change().mean()))
+                    last_price = future_price
                     date_str = future_date.strftime('%Y-%m-%d %H:%M:%S')
                     conn.execute(text("""
                         INSERT INTO stock_price (stock_symbol, s_date, s_price, is_prediction)

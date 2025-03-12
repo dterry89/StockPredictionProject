@@ -24,7 +24,7 @@ def fetch_stock_prices(stock_symbol, start_date = None, end_date = None):
 	sleep(1) # Avoid overwhelming yfinance
 	try:
 		   # Strip any suffix
-		stock = yf.Ticker(symbol)
+		stock = yf.Ticker(stock_symbol.split(":")[0])
 
 		# Default to 45 days before today if no start_date, today if no end_date
 		if not start_date:
@@ -95,7 +95,7 @@ def multiple_purchasers_check():  # Check to see if multiple congress members bo
 							cur.execute("""
 								INSERT INTO stock_price (stock_symbol, s_date, s_price)
 				   				VALUES (%s, %s, %s)
-				   			""", (price.stockName, price.t_date, float(price.price)))
+				   			""", (price.stockName, price.t_date, price.price))
 							print(f"Added {price.t_date} for {stock_sym}")
 				print(f"Updated price data for {stock_sym} up to {end_date}")
 		cur.close()

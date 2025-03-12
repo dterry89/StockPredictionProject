@@ -78,8 +78,9 @@ def scrape_page(page):
                     politician = politician[0] if politician else "N/A"
 
                     stock = re.findall(r"[A-Z]{1,4}:[A-Z]{2}", cols[1].text.strip())
-                    print(stock)
                     stock = stock[0] if stock else "N/A"
+                    if stock == 'OOGL:US':
+                        stock = "GOOGL:US"
                     # Obtain and format the date and price
                     date_full = cols[3].text.strip().replace(" ", ",")  
                     date_full = date_full[:-4] + ',' + date_full[-4:]
