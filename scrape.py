@@ -81,6 +81,10 @@ def scrape_page(page):
                     stock = stock[0] if stock else "N/A"
                     if stock == 'OOGL:US':
                         stock = "GOOGL:US"
+                    elif stock == 'CACN:US':
+                        stock = "ACN:US"
+                    elif stock == 'PCEG:US':
+                        stock = 'CEG:US'
                     # Obtain and format the date and price
                     date_full = cols[3].text.strip().replace(" ", ",")  
                     date_full = date_full[:-4] + ',' + date_full[-4:]
